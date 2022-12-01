@@ -64,7 +64,7 @@ shadowJar {
         include(dependency('io.socket:engine.io-client::1.0.0'))
         include(dependency('io.socket:socket.io-client::1.0.0'))
         include(dependency('org.json:json::20090211'))
-        include(dependency('net.dv8tion:JDA::5.0.0-alpha.22'))
+        include(dependency('net.dv8tion:JDA::5.0.0-DP-alpha.13'))
     }
     destinationDirectory.set(file("$rootDir/jars"))
 }
@@ -74,7 +74,7 @@ publishing {
             groupId = 'com.darksoldier1404.dppc'
             artifactId = 'DPP-Core'
             version = '1.19-SNAPSHOT'
-            artifact 'jars/' + jar.archiveName
+            artifact 'jars/'+ jar.archiveName
         }
     }
     repositories {
@@ -117,7 +117,7 @@ task DS_BUILD {
                     FileReader fr = new FileReader(f)
                     BufferedReader br = new BufferedReader(fr)
                     while ((line = br.readLine()) != null) {
-                        if (line.contains("version") && !line.contains("api")) {
+                        if(line.contains("version") && !line.contains("api")) {
                             line = "version: " + newVersion
                         }
                         lines.add(line + "\n")
@@ -137,7 +137,10 @@ task DS_BUILD {
 repositories {
     mavenCentral()
     mavenLocal()
-    maven { url "https://org.bstats/bstats-bukkit"}
+    maven {
+        url "https://org.bstats/bstats-bukkit"
+    }
+    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         content {
@@ -148,8 +151,6 @@ repositories {
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
     maven { url = 'https://repo.essentialsx.net/releases/' }
-
-
 }
 
 dependencies {
@@ -157,14 +158,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
-    compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
-    compileOnly 'org.spigotmc:spigot:1.19-R0.1-SNAPSHOT' // The full Spigot server with no shadowing. Requires mavenLocal.
     compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.19'
+    compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
     compileOnly 'org.bstats:bstats-bukkit:3.0.0'
-    compileOnly 'com.mojang.authlib:authlib:3.2.38'
+    compileOnly 'com.mojang:authlib:3.2.38'
     compileOnly 'com.mojang:brigadier:1.0.18'
-    compileOnly 'com.mojang.datafixers:datafixerupper:4.0.26'
-    compileOnly 'net.essentialsx:EssentialsX:2.19.7'
+    compileOnly 'com.mojang:datafixerupper:4.0.26'
+    compileOnly 'net.essentialsx:EssentialsX:2.19.3'
     implementation group: 'com.github.twitch4j', name: 'twitch4j', version: '1.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-api:0.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-core:0.10.0'
