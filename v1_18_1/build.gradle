@@ -1,0 +1,135 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow'
+}
+
+configurations {
+    jar.archiveName = 'DPP-Core-_' + name + '-SNAPSHOT.jar'
+    shadowJar.archiveName = 'DPP-Core-_' + name + '-SNAPSHOT.jar'
+}
+jar {
+    finalizedBy shadowJar
+    manifest {
+        attributes 'Main-Class': 'com.darksoldier1404.dppc.DPPCore'
+    }
+    destinationDirectory.set(file("$rootDir/jars"))
+}
+shadowJar {
+    dependencies {
+        include(dependency('com.github.twitch4j::1.10.0'))
+        include(dependency('com.github.philippheuer.events4j:events4j-api::0.10.0'))
+        include(dependency('com.github.philippheuer.events4j:events4j-core::0.10.0'))
+        include(dependency('com.github.philippheuer.events4j:events4j-handler-simple::0.10.0'))
+        include(dependency('com.github.vladimir-bukhtoyarov:bucket4j-core::7.5.0'))
+        include(dependency('com.github.philippheuer.credentialmanager:credentialmanager::0.1.2'))
+        include(dependency('io.github.openfeign:feign-core::11.8'))
+        include(dependency('io.github.openfeign:feign-hystrix::11.8'))
+        include(dependency('io.github.openfeign:feign-jackson::11.8'))
+        include(dependency('io.github.openfeign:feign-okhttp::11.8'))
+        include(dependency('io.github.openfeign:feign-slf4j::11.8'))
+        include(dependency('com.fasterxml.jackson.core:jackson-annotations::2.13.2'))
+        include(dependency('com.fasterxml.jackson.core:jackson-core::2.13.2'))
+        include(dependency('com.fasterxml.jackson.core:jackson-databind::2.13.2'))
+        include(dependency('com.fasterxml.jackson.datatype:jackson-datatype-jsr310::2.13.2'))
+        include(dependency('com.neovisionaries:nv-websocket-client::2.14'))
+        include(dependency('com.netflix.archaius:archaius-core::0.4.1'))
+        include(dependency('com.netflix.hystrix:hystrix-core::1.5.18'))
+        include(dependency('com.nytimes.android:cache::2.0.2'))
+        include(dependency('com.squareup.okhttp3:okhttp::4.9.3'))
+        include(dependency('com.squareup.okio:okio::2.9.0'))
+        include(dependency('com.apollographql.apollo:apollo-api-jvm::2.5.11'))
+        include(dependency('com.apollographql.apollo:apollo-http-cache-api::2.5.11'))
+        include(dependency('com.apollographql.apollo:apollo-normalized-cache-api-jvm::2.5.11'))
+        include(dependency('com.apollographql.apollo:apollo-normalized-cache-jvm::2.5.11'))
+        include(dependency('com.apollographql.apollo:apollo-runtime::2.5.11'))
+        include(dependency('com.benasher44:uuid-jvm::0.2.0'))
+        include(dependency('org.checkerframework:checker-qual::3.19.0'))
+        include(dependency('org.hdrhistogram:HdrHistogram::2.1.9'))
+        include(dependency('org.jetbrains.kotlin:kotlin-stdlib::1.5.0'))
+        include(dependency('org.jetbrains.kotlin:kotlin-stdlib-common::1.5.0'))
+        include(dependency('org.jetbrains.kotlin:kotlin-stdlib-jdk7::1.5.0'))
+        include(dependency('org.jetbrains.kotlin:kotlin-stdlib-jdk8::1.5.0'))
+        include(dependency('commons-configuration:commons-configuration::1.10'))
+        include(dependency('commons-io:commons-io::2.11.0'))
+        include(dependency('commons-lang:commons-lang::2.6'))
+        include(dependency('commons-logging:commons-logging::1.1.1'))
+        include(dependency('com.github.ben-manes.caffeine:caffeine::2.9.3'))
+        include(dependency('io.reactivex:rxjava::1.2.0'))
+        include(dependency('com.github.outstanding1301:donation-alert-api::1.0.0'))
+        include(dependency('io.socket:socket.io-client::1.0.0'))
+        include(dependency('io.reactivex.rxjava2:rxjava::2.1.16'))
+        include(dependency('org.jsoup:jsoup::1.13.1'))
+        include(dependency('com.googlecode.json-simple:json-simple::1.1.1'))
+        include(dependency('org.reactivestreams:reactive-streams::1.0.2'))
+
+    }
+    destinationDirectory.set(file("$rootDir/jars"))
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.darksoldier1404.dppc'
+            artifactId = 'DPP-Core'
+            version = '1.18.1-SNAPSHOT'
+            artifact '../jars/'+ jar.archiveName
+        }
+    }
+    repositories {
+        maven {
+            url "http://dpp.dpnw.site:8081/repository/maven-snapshots/"
+            allowInsecureProtocol = true
+        }
+    }
+}
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+build {
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
+
+group 'github.com/darksoldier1404'
+version = '2.0.6.66'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://dpp.dpnw.site:8081/repository/maven-public/"
+        allowInsecureProtocol = true
+    }
+    maven {
+        url "https://org.bstats/bstats-bukkit"
+    }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:23.0.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.18.1'
+    compileOnly 'org.spigotmc:spigot-api:R0.1:1.18.1'
+    compileOnly 'org.bstats:bstats-bukkit:3.0.0'
+    compileOnly 'com.mojang.authlib:authlib:3.2.38'
+    compileOnly 'com.mojang.datafixers:datafixerupper:4.0.26'
+    compileOnly 'com.earth2me.essentials:EssentialsX:2.19.3'
+    implementation group: 'com.github.twitch4j', name: 'twitch4j', version: '1.10.0'
+    implementation 'com.github.philippheuer.events4j:events4j-api:0.10.0'
+    implementation 'com.github.philippheuer.events4j:events4j-core:0.10.0'
+    implementation 'com.github.philippheuer.events4j:events4j-handler-simple:0.10.0'
+    implementation 'com.github.vladimir-bukhtoyarov:bucket4j:7.5.0'
+    implementation 'com.github.outstanding1301:donation-alert-api:1.0.0'
+    implementation 'io.socket:socket.io-client:1.0.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
+    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+}
+
+test {
+    useJUnitPlatform()
+}

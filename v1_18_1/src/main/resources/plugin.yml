@@ -1,0 +1,15 @@
+name: DPP-Core
+version: 2.0.6.66
+main: com.darksoldier1404.dppc.DPPCore
+api-version: 1.18
+authors: [ DEAD_POOLIO_ ]
+loadbefore:
+  - Essentials
+  - PlaceholderAPI
+  - ProtocolLib
+  - DP-LegendaryCash
+  - DP-VirtualStorage
+  - DP-SimplePrefix
+commands:
+  dppc:
+description: this plugin is include AnvilGUI from https://github.com/WesJD/AnvilGUI
