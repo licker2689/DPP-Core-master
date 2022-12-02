@@ -19,7 +19,7 @@ shadowJar {
     dependencies {
         include(dependency('com.github.twitch4j::1.10.0'))
         include(dependency('com.github.philippheuer.events4j:events4j-api::0.10.0'))
-        include(dependency('com.github.philippheuer.events4j:events4j-core::0.11.0'))
+        include(dependency('com.github.philippheuer.events4j:events4j-core::0.10.0'))
         include(dependency('com.github.philippheuer.events4j:events4j-handler-simple::0.10.0'))
         include(dependency('com.github.vladimir-bukhtoyarov:bucket4j-core::7.5.0'))
         include(dependency('com.github.philippheuer.credentialmanager:credentialmanager::0.1.2'))
@@ -78,10 +78,7 @@ publishing {
         }
     }
     repositories {
-        maven {
-            url "http://dpp.dpnw.site:8081/repository/maven-snapshots/"
-            allowInsecureProtocol = true
-        }
+        mavenLocal()
     }
 }
 group 'github.com/darksoldier1404'
@@ -158,14 +155,14 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
-    compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.19'
     compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
+    compileOnly 'org.spigotmc:spigot:1.19-R0.1-SNAPSHOT' // The full Spigot server with no shadowing. Requires mavenLocal.
     compileOnly 'org.bstats:bstats-bukkit:3.0.0'
     compileOnly 'com.mojang:authlib:3.2.38'
     compileOnly 'com.mojang:brigadier:1.0.18'
     compileOnly 'com.mojang:datafixerupper:4.0.26'
     compileOnly 'net.essentialsx:EssentialsX:2.19.3'
-    implementation group: 'com.github.twitch4j', name: 'twitch4j', version: '1.10.0'
+     implementation group: 'com.github.twitch4j', name: 'twitch4j', version: '1.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-api:0.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-core:0.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-handler-simple:0.10.0'
@@ -180,3 +177,4 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+

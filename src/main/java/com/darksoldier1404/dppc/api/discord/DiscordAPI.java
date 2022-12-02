@@ -16,11 +16,7 @@ public class DiscordAPI {
             plugin.log.warning("Discord API 사용 불가.");
             return;
         }
-        try {
-            jda = JDABuilder.createDefault(token).build();
-        } catch (LoginException e) {
-            System.out.println("Discord 봇 토큰이 잘못되었습니다.");
-        }
+        jda = JDABuilder.createDefault(token).build();
     }
 
     public static JDA getJDA(){

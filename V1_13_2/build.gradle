@@ -19,7 +19,7 @@ shadowJar {
     dependencies {
         include(dependency('com.github.twitch4j::1.10.0'))
         include(dependency('com.github.philippheuer.events4j:events4j-api::0.10.0'))
-        include(dependency('com.github.philippheuer.events4j:events4j-core::0.11.0'))
+        include(dependency('com.github.philippheuer.events4j:events4j-core::0.10.0'))
         include(dependency('com.github.philippheuer.events4j:events4j-handler-simple::0.10.0'))
         include(dependency('com.github.vladimir-bukhtoyarov:bucket4j-core::7.5.0'))
         include(dependency('com.github.philippheuer.credentialmanager:credentialmanager::0.1.2'))
@@ -76,10 +76,7 @@ publishing {
         }
     }
     repositories {
-        maven {
-            url "http://dpp.dpnw.site:8081/repository/maven-snapshots/"
-            allowInsecureProtocol = true
-        }
+        mavenLocal()
     }
 }
 compileJava.options.encoding = 'UTF-8'
@@ -98,26 +95,31 @@ version = '2.0.6.66'
 
 repositories {
     mavenCentral()
-    maven {
-        url "http://dpp.dpnw.site:8081/repository/maven-public/"
-        allowInsecureProtocol = true
-    }
+    mavenLocal()
     maven {
         url "https://org.bstats/bstats-bukkit"
     }
-    maven { url 'https://jitpack.io' }
+    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+    maven { url = 'https://repo.essentialsx.net/releases/' }
 }
 
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.13.2'
-    compileOnly 'org.spigotmc:spigot-api:R0.1:1.13.2'
+    compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
     compileOnly 'org.bstats:bstats-bukkit:3.0.0'
-    compileOnly 'com.earth2me.essentials:EssentialsX:2.19.3'
-    implementation group: 'com.github.twitch4j', name: 'twitch4j', version: '1.10.0'
-    implementation 'com.github.philippheuer.events4j:events4j-api:0.10.0'
+    compileOnly 'net.essentialsx:EssentialsX:2.19.7' 
+    implementation 'com.github.twitch4j:twitch4j:1.12.0'
     implementation 'com.github.philippheuer.events4j:events4j-core:0.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-handler-simple:0.10.0'
     implementation 'com.github.vladimir-bukhtoyarov:bucket4j:7.5.0'
