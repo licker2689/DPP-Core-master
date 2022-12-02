@@ -154,6 +154,8 @@ repositories {
             includeGroup 'org.spigotmc'
         }
     }
+    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+
 }
 
 dependencies {
@@ -164,9 +166,9 @@ dependencies {
     compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.19.2'
     compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
     compileOnly 'org.bstats:bstats-bukkit:3.0.0'
-    compileOnly 'com.mojang.authlib:authlib:3.2.38'
+    compileOnly 'com.mojang:authlib:3.2.38'
     compileOnly 'com.mojang:brigadier:1.0.18'
-    compileOnly 'com.mojang.datafixers:datafixerupper:4.0.26'
+    compileOnly 'com.mojang:datafixerupper:4.0.26'
     compileOnly 'net.essentialsx:EssentialsX:2.19.3'
     implementation 'com.github.twitch4j:twitch4j:1.12.0'
 
