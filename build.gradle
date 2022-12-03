@@ -78,11 +78,8 @@ publishing {
         }
     }
     repositories {
-        maven {
-            url "http://feather-s.kr:8083/repository/maven-snapshots/"
-            allowInsecureProtocol = true
-        }
-    }
+        mavenLocal()
+   }
 }
 group 'github.com/darksoldier1404'
 version = '2.0.6.66'
@@ -137,6 +134,10 @@ task DS_BUILD {
 repositories {
     mavenCentral()
     maven {
+        url "http://feather-s.kr:8083/repository/maven-release/"
+        allowInsecureProtocol = true
+    }
+    maven {
         url "http://feather-s.kr:8083/repository/maven-public/"
         allowInsecureProtocol = true
     }
@@ -169,7 +170,7 @@ dependencies {
     compileOnly 'com.mojang:authlib:3.2.38'
     compileOnly 'com.mojang:brigadier:1.0.18'
     compileOnly 'com.mojang:datafixerupper:4.0.26'
-    compileOnly 'net.essentialsx:EssentialsX:2.19.3'
+    compileOnly 'net.essentialsx:EssentialsX:2.19.7'
     implementation 'com.github.twitch4j:twitch4j:1.12.0'
 
     implementation 'com.github.philippheuer.events4j:events4j-api:0.10.0'

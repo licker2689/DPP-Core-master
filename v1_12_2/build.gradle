@@ -76,11 +76,8 @@ publishing {
         }
     }
     repositories {
-        maven {
-            url "http://feather-s.kr:8083/repository/maven-snapshots/"
-            allowInsecureProtocol = true
-        }
-    }
+        mavenLocal()
+   }
 }
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
@@ -99,14 +96,30 @@ version = '2.0.6.66'
 repositories {
     mavenCentral()
     maven {
+        url "http://feather-s.kr:8083/repository/maven-release/"
+        allowInsecureProtocol = true
+    }
+    maven {
         url "http://feather-s.kr:8083/repository/maven-public/"
         allowInsecureProtocol = true
     }
     maven {
         url "https://org.bstats/bstats-bukkit"
     }
-    maven { url 'https://repo.essentialsx.net/releases/' }
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+
+        // As of Gradle 5.1, you can limit this to only those
+        // dependencies you expect from it
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+
 }
+
 
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
