@@ -155,7 +155,9 @@ repositories {
             includeGroup 'org.spigotmc'
         }
     }
+    maven { url 'https://repo.essentialsx.net/releases/'}
     maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+
 
 }
 

@@ -116,7 +116,10 @@ repositories{
             includeGroup 'org.spigotmc'
         }
     }
+    maven { url 'https://repo.essentialsx.net/releases/'}
     maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
+
+    maven { url 'https://repo.essentialsx.net/releases/'}
 
 }
 
@@ -127,6 +130,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.18.1'
     compileOnly 'org.spigotmc:spigot-api:R0.1:1.18.1'
+
     compileOnly 'org.bstats:bstats-bukkit:3.0.0'
     compileOnly 'com.mojang:authlib:3.2.38'
     compileOnly 'com.mojang:datafixerupper:4.0.26'
