@@ -161,7 +161,7 @@ dependencies {
     compileOnly 'com.mojang:authlib:3.2.38'
     compileOnly 'com.mojang:brigadier:1.0.18'
     compileOnly 'com.mojang:datafixerupper:4.0.26'
-    compileOnly 'net.essentialsx:EssentialsX:2.19.3'
+    compileOnly 'net.essentialsx:EssentialsX:2.19.7'
      implementation group: 'com.github.twitch4j', name: 'twitch4j', version: '1.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-api:0.10.0'
     implementation 'com.github.philippheuer.events4j:events4j-core:0.10.0'
