@@ -59,7 +59,7 @@ shadowJar {
         include(dependency('com.github.outstanding1301:donation-alert-api::1.0.0'))
         include(dependency('io.socket:socket.io-client::1.0.0'))
         include(dependency('io.reactivex.rxjava2:rxjava::2.1.16'))
-        include(dependency('org.jsoup:jsoup::1.13.1'))
+        include(dependency('org.jsoup:jsoup::1.15.4'))
         include(dependency('com.googlecode.json-simple:json-simple::1.1.1'))
         include(dependency('org.reactivestreams:reactive-streams::1.0.2'))
 
@@ -128,7 +128,7 @@ dependencies {
     implementation 'com.github.outstanding1301:donation-alert-api:1.0.0'
     implementation 'io.socket:socket.io-client:1.0.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'org.jsoup:jsoup:1.15.4'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
